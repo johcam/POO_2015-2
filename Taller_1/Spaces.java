@@ -15,33 +15,37 @@ public class Spaces {
     public static void main (String[] args){
         Scanner rd=new Scanner(System.in);
         int num;
-        String A;
+        int larg;
+        String A="";
         String B;
         char ver;
-        inicio:
-        System.out.println("Escriba un número aquí:");
-        A=rd.next();
-        //ver=Integer.parseInt(A);
-        //if(Character.isDigit(ver)!=true){
-            num=A.length();
-            System.out.println(num);
-            System.out.println(A);
+        boolean check=true;
+        while (check){
+            System.out.println("Escriba un número aquí: ");
+            B=rd.nextLine();
+            larg=B.length();
             int D=1;
-            int E=1;
-            
-            for (int C=0; num!=C;C++) {
-                ver=A.substring(D-1,D).charAt(0);
-                if(Character.isDigit(ver)==true){
-                    System.out.printf(A.substring(D-1,D)+"   ");
-                }else{
-                    Bng:
-                    System.out.println("Existe un caracter invalido, por favor intente nuevamente");
-                    break;
-                    //continue Bng;
+            int E=0;
+            for (int C=0; larg!=C;C++) {
+                ver=B.substring(D-1,D).charAt(0);
+                if(Character.isDigit(ver)==false){                
+                    E=1;
                 }
                 D++;
             }
-            System.out.println("");
-        //}
+            if (E==1){
+                System.out.println("Su numero es invalido, intente nuevamente");                    
+            }else{
+                check=false;
+                A=B;
+            }
+        }
+        num=A.length();
+        int D=1;
+        for (int C=0; num!=C;C++) {
+                System.out.printf(A.substring(D-1,D)+"   ");            
+            D++;
+        }
+        System.out.println("");
     }
 }
