@@ -3,12 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Ejercicio;
-
-
 import java.util.Random;
 import java.util.Scanner;
-public class Ahorcado {
+public class Ahorcado_Johan {
 	
     public static boolean checar(CharSequence l, String palabra){
         boolean chec;
@@ -18,17 +15,17 @@ public class Ahorcado {
     public static void main(String[] args){
         Scanner t = new Scanner(System.in);
         Random ran = new Random();
-        int r = ran.nextInt(10)+1;
         String[] wordList = {"OBJECTS","TURING","COMPUTER","IMITATION",
             "SCREEN","MEMORY","INTERNET","DIGITAL",
             "BINARY","BITE"};
+        int r = ran.nextInt(wordList.length);
         String palabra = wordList[r];
         int error = 0;
         String letra = "";
         char l;
         char []psecreta = palabra.toCharArray();
         int aciertos=0;
-        System.out.println("TamaÃ±o de la palabra es " + palabra.length());
+        System.out.println("Tamaño de la palabra es " + palabra.length());
         char []aux=new char[palabra.length()];
         for (int i=0;i<palabra.length();i++){
             aux[i]='_';
@@ -38,17 +35,17 @@ public class Ahorcado {
             System.out.print(aux[i]);
             System.out.print("Ingrese una letra ");
             switch(error){
-                case 1: System.out.println("\n MuÃ±eco: q");
+                case 1: System.out.println("\n Muñeco: q");
                 break;
-                case 2: System.out.println("\n MuÃ±eco: q(");
+                case 2: System.out.println("\n Muñeco: q(");
                 break;
-                case 3: System.out.println("\n MuÃ±eco: q(X");
+                case 3: System.out.println("\n Muñeco: q(X");
                 break;
-                case 4: System.out.println("\n MuÃ±eco: q(X_");
+                case 4: System.out.println("\n Muñeco: q(X_");
                 break;
-                case 5: System.out.println("\n MuÃ±eco: q(X_X");
+                case 5: System.out.println("\n Muñeco: q(X_X");
                 break;
-                case 6: System.out.println("\n MuÃ±eco: q(X_X)");
+                case 6: System.out.println("\n Muñeco: q(X_X)");
                 break;
                 default: System.out.println("");
             }
