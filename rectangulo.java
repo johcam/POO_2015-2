@@ -1,55 +1,77 @@
 
-package rectangulo;
 
-public class Rectangulo 
+package rectangulo;
+//package geometria;
+
+public class Rectangulo //implements FiguraGeometrica
 {
     private double base;
     private double altura;
-    private double área;
+    private double areaRectangulo;
     private double perimetro;
-   
-    public double getBase() {
-        return base;
-    }
-    public void setBase(double base) {
+
+    public Rectangulo(double base, double altura) 
+    {
         this.base = base;
-    }
-    public double getAltura() {
-        return altura;
-    }
-    public void setAltura(double altura) {
         this.altura = altura;
     }
-    public double getÁrea() {
-        return área;
+
+    public double getBase() 
+    {
+        return base;
     }
-    public void setÁrea(double área) {
-        this.área = área;
+
+    public void setBase(double base)
+    {
+        this.base = base;
     }
-    public double getPerimetro() {
+
+    public double getAltura() 
+    {
+        return altura;
+    }
+
+    public void setAltura(double altura) 
+    {
+        this.altura = altura;
+    }
+
+    public double getAreaRectangulo() 
+    {
+        return areaRectangulo;
+    }
+
+    //@Override
+    public void area() 
+    {
+        areaRectangulo = base * altura;
+    }
+    
+    public double getperimetro() 
+    {
         return perimetro;
     }
-    public void setPerimetro(double perimetro) {
-        this.perimetro = perimetro;
+
+    //@Override
+    public void perimetro() 
+    {
+        perimetro = (base*2) + (altura*2);
     }
-    
-    
-    public void Captura(){
-        System.out.println("BASE:");
+    public static void main(String[] args) 
+    {
+        //probar clases cálculo áreas figuras geométricas        
         
         
-        System.out.println("ALTURA:");
-    }
-    public void CalcularArea() {
-     área=(base*altura);
-    }
-    public void CalcularPerimetro(){
-     perimetro=base+base+altura+altura;
-    }
-    public void Imprimir(){  
-    System.out.println("EL ÁREA ES: "+área+"\n EL PERÍMETRO ES: "+perimetro);
-    }
-public static void main(String[] args) {
-        // TODO code application logic here
-    }
+        Rectangulo rectangulo = new Rectangulo(1, 1);
+        rectangulo.area();
+        rectangulo.perimetro();
+        System.out.println("Área del rectángulo : " + 
+                rectangulo.getAreaRectangulo());
+        System.out.println("Perimetro del rectángulo: " + 
+                rectangulo.getperimetro());
+
 }
+
+}
+
+   
