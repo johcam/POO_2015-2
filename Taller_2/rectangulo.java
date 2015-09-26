@@ -74,7 +74,7 @@ public class Rectangulo
                
         
         
-        Rectangulo rectangulo = new Rectangulo(80, 15);
+        Rectangulo rectangulo = new Rectangulo(1, 1);
         
       
             rectangulo.area();
