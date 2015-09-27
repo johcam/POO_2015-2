@@ -1,5 +1,5 @@
 
-package rectangulo;
+
 
 
 public class Rectangulo 
