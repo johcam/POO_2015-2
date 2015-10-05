@@ -15,7 +15,7 @@ import java.text.*;
 import java.math.*;
 import java.util.regex.*;
 
-public class Main {
+public class Main_2 {
     public static void main (String args []){
         double lenght;
         double base;
