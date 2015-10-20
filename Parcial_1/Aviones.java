@@ -1,6 +1,6 @@
-public abstract class Aviones {
+public class Aviones {
     
-
-    public abstract int pasajeros(int n);
-    
+    public int pasajeros1(int n){
+        return n;
+    }
 }
