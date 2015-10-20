@@ -1,4 +1,4 @@
-﻿import java.util.Scanner;
+import java.util.Scanner;
 
 public class Aerolinea {
     
@@ -33,9 +33,9 @@ public class Aerolinea {
        comercial Avion_2=new comercial(190,0);
        comercial Avion_3=new comercial(200,0);
        comercial Avion_4=new comercial(230,0);
-       
-       
-        while(true){
+       carga Avion_c=new carga(500, 0);
+       boolean c=true;
+        while(c){
             System.out.println("Bienvenido a nuestras aerolinea y gracias por elegir nuestros servicios");
             System.out.println("POR FAVOR ELIJA UNA CATEGORIA ESCRIBIENDO EL NUMERO CORRESPONDIENTE:");
             System.out.println("1. Para vuelo comercial.    2 Para vuelo de carga      3. Para vuelo privado");
@@ -95,6 +95,21 @@ public class Aerolinea {
                         break;
                     case (2):
                         System.out.println("Usted ha elegido vuelo de carga");
+                        System.out.println("Ingrese el peso de la carga que quiere transportar (Carga disponible: "+Avion_c.capacidad+")");
+                        b=true;
+                        while (b){
+                            ver=sca.next();
+                            while (check(ver)){
+                                ver=sca.next();
+                            }
+                            int n=Integer.parseInt(ver);
+                            if (n>Avion_c.capacidad){
+                                System.out.println("La cantidad de carga ingresada es mayor a nuestra capacidad, intente nuevamente");
+                            }else{
+                                b=false;
+                                Avion_c.cargado(n);
+                            }
+                        }
                         a=false;
                         break;
                     case (3):
@@ -105,7 +120,37 @@ public class Aerolinea {
                         System.out.println("Esa opcion no es valida, valide de nuevo");
                         break;
                 }
-            }    
+            }
+            Scanner sc=new Scanner(System.in);
+            boolean d=true;
+            String preg;
+            while(d){
+                System.out.println("Desea continuar (S/N)");
+                preg=sc.next();
+                switch (preg){
+                    case "S":
+                        c=true;
+                        d=false;
+                        break;
+                    case "s":
+                        c=true;
+                        d=false;
+                        break;
+                    case "N":
+                        System.out.println("Cerrando el programa");
+                        c=false;
+                        d=false;
+                        break;
+                    case "n":
+                        System.out.println("Cerrando el programa");
+                        c=false;
+                        d=false;
+                        break;
+                    default:
+                        System.out.println("Opcion ingresada no valida, intente nuevamente");
+                        d=true;
+                }
+            }
         }
     }
 }
