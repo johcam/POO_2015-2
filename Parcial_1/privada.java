@@ -1,5 +1,14 @@
 public class privada extends Aviones{
-        public int pasajeros(int n){
-        return 5;
+    int puestos;
+    int pasajeros;
+    
+    public privada (int puestos, int pasajeros){
+        this.puestos=puestos;
+        this.pasajeros=pasajeros;
     }
+
+    public int pasajero(int n){
+        this.puestos=this.puestos-n;
+        return this.puestos-this.pasajeros;
+    }    
 }
