@@ -71,21 +71,25 @@ public class Aerolinea {
                                     System.out.println("Usted ha elegido el avion 1");
                                     Avion_1.pasajeros(1);
                                     b=false;
+                                    break;
                                 case(2):
                                     System.out.println("Usted ha elegido el avion 2");
                                     Avion_2.pasajeros(1);
                                     b=false;
-
+                                    break;
                                 case(3):
                                     System.out.println("Usted ha elegido el avion 3");
                                     Avion_3.pasajeros(1);
                                     b=false;
+                                    break;
                                 case(4):
                                     System.out.println("Usted ha elegido el avion 4");
                                     Avion_4.pasajeros(1);
-                                    b=false;                             
+                                    b=false;
+                                    break;
                                 default:
                                     System.out.println("Escriba de nuevo el avion");
+                                    break;
                             }
                         }                    
                         break;
