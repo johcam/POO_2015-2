@@ -29,12 +29,13 @@ public class Aerolinea {
     }
 
     public static void main(String[] args) {
-       comercial Avion_1=new comercial(150,0);
-       comercial Avion_2=new comercial(190,0);
-       comercial Avion_3=new comercial(200,0);
-       comercial Avion_4=new comercial(230,0);
-       carga Avion_c=new carga(500, 0);
-       boolean c=true;
+        comercial Avion_1=new comercial(150,0);
+        comercial Avion_2=new comercial(190,0);
+        comercial Avion_3=new comercial(200,0);
+        comercial Avion_4=new comercial(230,0);
+        carga Avion_c=new carga(500, 0);
+        privada Avion_p=new privada(20, 0);
+        boolean c=true;
         while(c){
             System.out.println("Bienvenido a nuestras aerolinea y gracias por elegir nuestros servicios");
             System.out.println("POR FAVOR ELIJA UNA CATEGORIA ESCRIBIENDO EL NUMERO CORRESPONDIENTE:");
@@ -114,6 +115,22 @@ public class Aerolinea {
                         break;
                     case (3):
                         System.out.println("Usted ha elegido vuelo privado");
+                        System.out.println("Ingrese la cantidad de pasajeros a transportar (Asientos disponibles: "+Avion_p.puestos+")");
+                        b=true;
+                        while (b){
+                            ver=sca.next();
+                            while (check(ver)){
+                                ver=sca.next();
+                            }
+                            int n=Integer.parseInt(ver);
+                            System.out.println("Ver "+ver+" n "+n);
+                            if (n>Avion_p.puestos){
+                                System.out.println("La cantidad de pasajeros ingresada es mayor a nuestra capacidad, intente nuevamente");
+                            }else{
+                                b=false;
+                                Avion_p.pasajero(n);
+                            }
+                        }
                         a=false;
                         break;
                     default:
