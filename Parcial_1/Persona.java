@@ -1,4 +1,4 @@
-public class Personas{
+public class Persona{
     protected String nombre;
     protected int id;
     protected String rol;

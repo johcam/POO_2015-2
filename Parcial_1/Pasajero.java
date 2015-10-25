@@ -1,6 +1,6 @@
-public class Pasajeros extends Personas{
+public class Pasajero extends Persona{
     
-    public Pasajeros(String nombre, int id, String rol){
+    public Pasajero(String nombre, int id, String rol){
         this.nombre=nombre;
         this.id=id;
         this.rol=rol;

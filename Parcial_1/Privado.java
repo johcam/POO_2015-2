@@ -1,11 +1,12 @@
-public class Privada extends Aviones{
+public class Privado extends Avion{
     private int puestos;
     private int pasajeros;
     
-    public Privada (int puestos, int pasajeros){
-        this.puestos=puestos;
-        this.pasajeros=pasajeros;
+    public Privado (String nombre, int n){
+        this.nombre=nombre;
+        this.puestos=n;
     }
+
 
     public int pasajero(int n){
         this.puestos=this.puestos-n;
