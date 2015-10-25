@@ -20,10 +20,12 @@ public class Administra {
         pas=fs.leerPasajero();
         ArrayList<Piloto>pil=new ArrayList();
         pil=fs.leerPiloto();
+        ArrayList<Ruta>rut=new ArrayList();
+        rut=fs.leerRuta();
         while (a){
             System.out.println("SISTEMA ADMINISTRATIVO AEROLINEA");
             System.out.println("Bienvenidos al Sistema Administrativo, seleccione una de las siguientes opciones");
-            System.out.println("1. Nuevo avion     2. Nueva persona");
+            System.out.println("1. Nuevo avion     2. Nueva persona     3. Nueva ruta");
             ver=sca.next();
             while (Funciones.Check(ver)){
                 ver=sca.next();
@@ -40,7 +42,6 @@ public class Administra {
                     eleccion=Integer.parseInt(ver);
                     switch (eleccion){
                         case (1):
-                            boolean b=true;
                             System.out.println("Ingrese el nombre del avion:");
                             nombre=sca.next();
                             System.out.println("Ingrese la capacidad de pasajeros del avión:");
@@ -55,7 +56,6 @@ public class Administra {
                             }
                             break;
                         case (2):
-                            b=true;
                             System.out.println("Ingrese el nombre del avion:");
                             nombre=sca.next();
                             System.out.println("Ingrese la capacidad de carga del avión:");
@@ -70,7 +70,6 @@ public class Administra {
                             }
                             break;
                         case (3):
-                            b=true;
                             System.out.println("Ingrese el nombre del avion:");
                             nombre=sca.next();
                             System.out.println("Ingrese la capacidad de pasajeros del avión:");
@@ -96,8 +95,8 @@ public class Administra {
                     eleccion=Integer.parseInt(ver);
                     switch (eleccion){
                         case (1):
-                            boolean vip=true;
-                            boolean cliFrec=true;
+                            boolean vip=false;
+                            boolean cliFrec=false;
                             String s;
                             System.out.println("Ingrese el nombre del pasajero:");
                             nombre=sca.next();
@@ -107,7 +106,7 @@ public class Administra {
                             System.out.println("Es Cliente Frecuente? (S/N):");
                             s=sca.next();
                             cliFrec=fs.verBool(s);
-                            pas.add(new Pasajero(nombre,(pas.size()+1), vip, cliFrec));
+                            pas.add(new Pasajero(nombre,(pas.size()+1), vip, cliFrec,0));
                             for (Pasajero pa: pas){
                                 System.out.println("El pasajero "+pa.getNombre()+" tiene un ID de "+pa.getID());
                             }
@@ -115,11 +114,29 @@ public class Administra {
                         case (2):                            
                             System.out.println("Ingrese el nombre del piloto:");
                             nombre=sca.next();
-                            pil.add(new Piloto(nombre,(pil.size()+1)));
+                            pil.add(new Piloto(nombre,(pil.size()+1),0));
                             for (Piloto pi: pil){
                                 System.out.println("El piloto "+pi.getNombre()+" tiene un ID de "+pi.getID());
                             }
                             break;
+                    }
+                    break;
+                case (3):
+                    String origen;
+                    String destino;
+                    System.out.println("Ingrese la ciudad de origen:");
+                    origen=sca.next();
+                    System.out.println("Ingrese la ciudad de destino:");
+                    destino=sca.next();
+                    System.out.println("Ingrese la distancia entre las dos ciudades:");
+                    ver=sca.next();
+                    while (Funciones.Check(ver)){
+                        ver=sca.next();
+                    }
+                    n=Integer.parseInt(ver);
+                    rut.add(new Ruta(origen,destino,n,(rut.size()+1)));
+                    for (Ruta ru: rut){
+                        System.out.println("La ruta "+ru.getOrigen()+" - "+ru.getDestino()+ " tiene una distancia de "+ru.getDistancia()+"; Codigo de ruta: "+ru.getCodigo());
                     }
                     break;
                 default:
@@ -158,10 +175,11 @@ public class Administra {
             }
         }
 //        Text t=new text();
-        Funciones.guardarComercial(com);
-        Funciones.guardarCarga(car);
-        Funciones.guardarPrivado(pri);
-        Funciones.guardarPasajero(pas);
-        Funciones.guardarPiloto(pil);
+        fs.guardarComercial(com);
+        fs.guardarCarga(car);
+        fs.guardarPrivado(pri);
+        fs.guardarPasajero(pas);
+        fs.guardarPiloto(pil);
+        fs.guardarRuta(rut);
     }
 }

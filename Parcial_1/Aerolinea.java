@@ -11,6 +11,13 @@ public class Aerolinea {
         car=fs.leerCarga();
         ArrayList<Privado>pri=new ArrayList();
         pri=fs.leerPrivado();
+        ArrayList<Pasajero>pas=new ArrayList();
+        pas=fs.leerPasajero();
+        ArrayList<Piloto>pil=new ArrayList();
+        pil=fs.leerPiloto();
+        ArrayList<Ruta>rut=new ArrayList();
+        rut=fs.leerRuta();
+        ArrayList<String>str=new ArrayList();
         boolean c=true;
         while(c){
             System.out.println("Bienvenido a nuestras aerolinea y gracias por elegir nuestros servicios");
@@ -30,9 +37,9 @@ public class Aerolinea {
                     case (1):
                         System.out.println("Usted ha elegido vuelo comercial");
                         a=false;
-                        System.out.println("Se tienen la siguiente cantidad de puestos para los siguientes aviones:");
+                        System.out.println("Se tienen la siguiente cantidad de puestos para los siguientes aviones y sus rutas:");
                         for (int i=0; i<com.size();i++){
-                            System.out.println("Avion "+(i+1)+" "+com.get(i).getNombre()+": "+com.get(i).getPuestos());
+                            System.out.println("Avion "+(i+1)+" "+com.get(i).getNombre()+": "+com.get(i).getPuestos()+" Ruta: "+rut.get(i).getOrigen()+" a "+rut.get(i).getDestino());
                         }
                         System.out.println("Elija el avion escribiendo el numero del mismo");
                         boolean b=true;

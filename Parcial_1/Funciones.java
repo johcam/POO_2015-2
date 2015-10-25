@@ -39,7 +39,7 @@ public class Funciones {
         return false;
     }
     
-    public static void guardarComercial (ArrayList<Comercial>com){
+    public void guardarComercial (ArrayList<Comercial>com){
         Path path =Paths.get("C:\\Users\\X45C\\Documents\\NetBeansProjects\\aerolinea\\src\\aerolinea\\Comercial.txt");
         Charset cs=StandardCharsets.UTF_8;
         try(BufferedWriter wr=Files.newBufferedWriter(path, cs)){
@@ -50,7 +50,7 @@ public class Funciones {
             System.out.println("No se ha creado el archivo");
         }
     }
-    public static void guardarCarga (ArrayList<Carga>car){
+    public void guardarCarga (ArrayList<Carga>car){
         Path path =Paths.get("C:\\Users\\X45C\\Documents\\NetBeansProjects\\aerolinea\\src\\aerolinea\\Carga.txt");
         Charset cs=StandardCharsets.UTF_8;
         try(BufferedWriter wr=Files.newBufferedWriter(path, cs)){
@@ -61,7 +61,7 @@ public class Funciones {
             System.out.println("No se ha creado el archivo");
         }
     }
-    public static void guardarPrivado (ArrayList<Privado>com){
+    public void guardarPrivado (ArrayList<Privado>com){
         Path path =Paths.get("C:\\Users\\X45C\\Documents\\NetBeansProjects\\aerolinea\\src\\aerolinea\\Privado.txt");
         Charset cs=StandardCharsets.UTF_8;
         try(BufferedWriter wr=Files.newBufferedWriter(path, cs)){
@@ -123,13 +123,24 @@ public class Funciones {
     }
     
     public void restarPasajerosComerciales(ArrayList<Comercial>com,int a){
+        Funciones fs = new Funciones();
+        ArrayList<Ruta>rut=new ArrayList();
+        rut=fs.leerRuta();
         Scanner sca=new Scanner(System.in);
         String ver;
         int n;
         boolean c=true;
         System.out.println("Usted ha elegido el avion "+a);
         if (com.get(a-1).getPuestos()>0){
-            System.out.println("Ingrese la cantidad de pasajeros a transportar (Asientos disponibles: "+com.get(a-1).getPuestos()+")");
+            System.out.println("Ingrese el ID del pasajero (0 si no se tiene)");
+            Ruta ru=rut.get(a+1);
+            ver=sca.next();
+            while (Funciones.Check(ver)){
+                ver=sca.next();
+            }
+            int m=Integer.parseInt(ver);
+            com.get(a-1).pasajeros(1);
+            System.out.println("Ingrese la cantidad de pasajeros adicionales a transportar (Asientos disponibles: "+com.get(a-1).getPuestos()+")");
             while (c){
                 ver=sca.next();
                 while (Funciones.Check(ver)){
@@ -141,6 +152,7 @@ public class Funciones {
                 }else{
                     c=false;
                     com.get(a-1).pasajeros(n);
+                    Vuelo vul = new Vuelo(ru,n,1);
                 }
             }
         }else{
@@ -198,23 +210,23 @@ public class Funciones {
         }
     }
     
-    public static void guardarPasajero (ArrayList<Pasajero>pas){
+    public void guardarPasajero (ArrayList<Pasajero>pas){
         Path path =Paths.get("C:\\Users\\X45C\\Documents\\NetBeansProjects\\aerolinea\\src\\aerolinea\\Pasajero.txt");
         Charset cs=StandardCharsets.UTF_8;
         try(BufferedWriter wr=Files.newBufferedWriter(path, cs)){
             for (Pasajero pa:pas){
-                wr.write(pa.getNombre()+";"+pa.getID()+";"+pa.getVip()+";"+pa.getClienteFrecuente()+"\n");
+                wr.write(pa.getNombre()+";"+pa.getID()+";"+pa.getVip()+";"+pa.getClienteFrecuente()+";"+pa.getVolado()+"\n");
             }
         }catch(Exception e){
             System.out.println("No se ha creado el archivo");
         }
     }
-    public static void guardarPiloto (ArrayList<Piloto>pil){
+    public void guardarPiloto (ArrayList<Piloto>pil){
         Path path =Paths.get("C:\\Users\\X45C\\Documents\\NetBeansProjects\\aerolinea\\src\\aerolinea\\Piloto.txt");
         Charset cs=StandardCharsets.UTF_8;
         try(BufferedWriter wr=Files.newBufferedWriter(path, cs)){
             for (Piloto pi:pil){
-                wr.write(pi.getNombre()+";"+pi.getID()+"\n");
+                wr.write(pi.getNombre()+";"+pi.getID()+";"+pi.getVolado()+"\n");
             }
         }catch(Exception e){
             System.out.println("No se ha creado el archivo");
@@ -230,7 +242,7 @@ public class Funciones {
         try(BufferedReader rd=Files.newBufferedReader(path, cs)){
             while ((s=rd.readLine())!=null){
                 String[] sSplit = s.split(";");
-                Pasajero pa = new Pasajero(sSplit[0],Integer.parseInt(sSplit[1]),Boolean.parseBoolean(sSplit[2]),Boolean.parseBoolean(sSplit[3]));
+                Pasajero pa = new Pasajero(sSplit[0],Integer.parseInt(sSplit[1]),Boolean.parseBoolean(sSplit[2]),Boolean.parseBoolean(sSplit[3]),Integer.parseInt(sSplit[4]));
                 pas.add(pa);
             }
         }catch(Exception e){
@@ -248,13 +260,43 @@ public class Funciones {
         try(BufferedReader rd=Files.newBufferedReader(path, cs)){
             while ((s=rd.readLine())!=null){
                 String[] sSplit = s.split(";");
-                Piloto pi = new Piloto(sSplit[0],Integer.parseInt(sSplit[1]));
+                Piloto pi = new Piloto(sSplit[0],Integer.parseInt(sSplit[1]),Integer.parseInt(sSplit[2]));
                 pil.add(pi);
             }
         }catch(Exception e){
             System.err.println("No se ha creado el archivo");
         }
         return pil;
+    }
+    
+    public void guardarRuta (ArrayList<Ruta>rut){
+        Path path =Paths.get("C:\\Users\\X45C\\Documents\\NetBeansProjects\\aerolinea\\src\\aerolinea\\Ruta.txt");
+        Charset cs=StandardCharsets.UTF_8;
+        try(BufferedWriter wr=Files.newBufferedWriter(path, cs)){
+            for (Ruta ru:rut){
+                wr.write(ru.getOrigen()+";"+ru.getDestino()+";"+ru.getDistancia()+";"+ru.getCodigo()+"\n");
+            }
+        }catch(Exception e){
+            System.out.println("No se ha creado el archivo");
+        }
+    }
+    public ArrayList<Ruta>leerRuta(){
+        Path path =Paths.get("C:\\Users\\X45C\\Documents\\NetBeansProjects\\aerolinea\\src\\aerolinea\\Ruta.txt");
+        Charset cs=StandardCharsets.UTF_8;
+        String s;
+        boolean a=false;
+        boolean b=false;
+        ArrayList<Ruta>rut = new ArrayList();
+        try(BufferedReader rd=Files.newBufferedReader(path, cs)){
+            while ((s=rd.readLine())!=null){
+                String[] sSplit = s.split(";");
+                Ruta ru = new Ruta(sSplit[0],sSplit[1],Integer.parseInt(sSplit[2]),Integer.parseInt(sSplit[3]));
+                rut.add(ru);
+            }
+        }catch(Exception e){
+            System.err.println("No se ha creado el archivo");
+        }
+        return rut;
     }
     public boolean verBool(String preg){
         boolean a=false;

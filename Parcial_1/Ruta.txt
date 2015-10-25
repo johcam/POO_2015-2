@@ -1,0 +1,4 @@
+Bogota;Cali;500;1
+Bogota;Madrid;10000;2
+Cali;Bogota;500;3
+Madrid;Bogota;10000;4

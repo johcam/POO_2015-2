@@ -1,7 +1,8 @@
 public class Persona{
     protected String nombre;
-    protected int id;
     protected int volado;
+    protected int id;
+    protected boolean volando;
     
     public void setNombre(String name){
         this.nombre=name;
@@ -12,5 +13,17 @@ public class Persona{
     }
     public int getID(){
         return id;
+    }
+    public void setEstado(boolean volando){
+        this.volando=volando;
+    }
+    public boolean getEstado(){
+        return volando;
+    }
+    public void setVolado(int volado){
+        this.volado=this.volado+volado;
+    }
+    public int getVolado(){
+        return volado;
     }
 }

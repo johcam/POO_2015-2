@@ -1,4 +1,4 @@
-Juan;1;true;false
-Pedro;2;false;true
-Felipe;3;false;false
-Ernesto;4;false;true
+Juan;1;true;false;10000
+Pedro;2;false;true;2500
+Felipe;3;false;false;0
+Ernesto;4;false;true;0

@@ -1,9 +1,7 @@
 public class Piloto extends Persona{
-    public Piloto(String nombre, int id){
+    public Piloto(String nombre, int id, int volado){
         this.nombre=nombre;  
         this.id=id;
-    }
-    public int getVolado(){
-        return volado;
+        this.volado=volado;
     }
 }
