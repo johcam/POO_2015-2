@@ -1,4 +1,4 @@
-import java.nio.charset.Charset;
+﻿import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -196,5 +196,94 @@ public class Funciones {
         }else{
             System.err.println("No hay disponibilidad de asientos en este vuelo, le invitamos a explorar otras opciones");
         }
+    }
+    
+    public static void guardarPasajero (ArrayList<Pasajero>pas){
+        Path path =Paths.get("C:\\Users\\X45C\\Documents\\NetBeansProjects\\aerolinea\\src\\aerolinea\\Pasajero.txt");
+        Charset cs=StandardCharsets.UTF_8;
+        try(BufferedWriter wr=Files.newBufferedWriter(path, cs)){
+            for (Pasajero pa:pas){
+                wr.write(pa.getNombre()+";"+pa.getID()+";"+pa.getVip()+";"+pa.getClienteFrecuente()+"\n");
+            }
+        }catch(Exception e){
+            System.out.println("No se ha creado el archivo");
+        }
+    }
+    public static void guardarPiloto (ArrayList<Piloto>pil){
+        Path path =Paths.get("C:\\Users\\X45C\\Documents\\NetBeansProjects\\aerolinea\\src\\aerolinea\\Piloto.txt");
+        Charset cs=StandardCharsets.UTF_8;
+        try(BufferedWriter wr=Files.newBufferedWriter(path, cs)){
+            for (Piloto pi:pil){
+                wr.write(pi.getNombre()+";"+pi.getID()+"\n");
+            }
+        }catch(Exception e){
+            System.out.println("No se ha creado el archivo");
+        }
+    }
+    public ArrayList<Pasajero>leerPasajero(){
+        Path path =Paths.get("C:\\Users\\X45C\\Documents\\NetBeansProjects\\aerolinea\\src\\aerolinea\\Pasajero.txt");
+        Charset cs=StandardCharsets.UTF_8;
+        String s;
+        boolean a=false;
+        boolean b=false;
+        ArrayList<Pasajero>pas = new ArrayList();
+        try(BufferedReader rd=Files.newBufferedReader(path, cs)){
+            while ((s=rd.readLine())!=null){
+                String[] sSplit = s.split(";");
+                Pasajero pa = new Pasajero(sSplit[0],Integer.parseInt(sSplit[1]),Boolean.parseBoolean(sSplit[2]),Boolean.parseBoolean(sSplit[3]));
+                pas.add(pa);
+            }
+        }catch(Exception e){
+            System.err.println("No se ha creado el archivo");
+        }
+        return pas;
+    }
+    public ArrayList<Piloto>leerPiloto(){
+        Path path =Paths.get("C:\\Users\\X45C\\Documents\\NetBeansProjects\\aerolinea\\src\\aerolinea\\Piloto.txt");
+        Charset cs=StandardCharsets.UTF_8;
+        String s;
+        boolean a=false;
+        boolean b=false;
+        ArrayList<Piloto>pil = new ArrayList();
+        try(BufferedReader rd=Files.newBufferedReader(path, cs)){
+            while ((s=rd.readLine())!=null){
+                String[] sSplit = s.split(";");
+                Piloto pi = new Piloto(sSplit[0],Integer.parseInt(sSplit[1]));
+                pil.add(pi);
+            }
+        }catch(Exception e){
+            System.err.println("No se ha creado el archivo");
+        }
+        return pil;
+    }
+    public boolean verBool(String preg){
+        boolean a=false;
+        boolean d=true;
+        Scanner sc=new Scanner(System.in);
+        while(d){
+            switch (preg){
+                case "S":
+                    a=true;
+                    d=false;
+                    break;
+                case "s":
+                    a=true;
+                    d=false;
+                    break;
+                case "N":
+                    a=false;
+                    d=false;
+                    break;
+                case "n":
+                    a=false;
+                    d=false;
+                    break;
+                default:
+                    System.err.println("Opción ingresada no válida, por favor intente de nuevo");
+                    preg=sc.next();
+                    d=true;
+            }
+        }
+        return a;
     }
 }

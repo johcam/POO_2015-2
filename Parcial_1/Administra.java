@@ -16,11 +16,14 @@ public class Administra {
         car=fs.leerCarga();
         ArrayList<Privado>pri=new ArrayList();
         pri=fs.leerPrivado();
-        ArrayList<Pasajero>Pas=null;
+        ArrayList<Pasajero>pas=new ArrayList();
+        pas=fs.leerPasajero();
+        ArrayList<Piloto>pil=new ArrayList();
+        pil=fs.leerPiloto();
         while (a){
             System.out.println("SISTEMA ADMINISTRATIVO AEROLINEA");
             System.out.println("Bienvenidos al Sistema Administrativo, seleccione una de las siguientes opciones");
-            System.out.println("1. Nuevo avion     2. Nuevo cliente");
+            System.out.println("1. Nuevo avion     2. Nueva persona");
             ver=sca.next();
             while (Funciones.Check(ver)){
                 ver=sca.next();
@@ -82,7 +85,42 @@ public class Administra {
                             }
                             break;
                     }
+                    break;
                 case (2):
+                    System.out.println("Ha elegido crear una nueva persona\nSeleccione el tipo de persona a crear:");
+                    System.out.println("1. Pasajero     2. Piloto");
+                    ver=sca.next();
+                    while (Funciones.Check(ver)){
+                        ver=sca.next();
+                    }
+                    eleccion=Integer.parseInt(ver);
+                    switch (eleccion){
+                        case (1):
+                            boolean vip=true;
+                            boolean cliFrec=true;
+                            String s;
+                            System.out.println("Ingrese el nombre del pasajero:");
+                            nombre=sca.next();
+                            System.out.println("Es usuario VIP? (S/N):");
+                            s=sca.next();
+                            vip=fs.verBool(s);
+                            System.out.println("Es Cliente Frecuente? (S/N):");
+                            s=sca.next();
+                            cliFrec=fs.verBool(s);
+                            pas.add(new Pasajero(nombre,(pas.size()+1), vip, cliFrec));
+                            for (Pasajero pa: pas){
+                                System.out.println("El pasajero "+pa.getNombre()+" tiene un ID de "+pa.getID());
+                            }
+                            break;
+                        case (2):                            
+                            System.out.println("Ingrese el nombre del piloto:");
+                            nombre=sca.next();
+                            pil.add(new Piloto(nombre,(pil.size()+1)));
+                            for (Piloto pi: pil){
+                                System.out.println("El piloto "+pi.getNombre()+" tiene un ID de "+pi.getID());
+                            }
+                            break;
+                    }
                     break;
                 default:
                     System.out.println("Opción ingresada no válida, por favor intente de nuevo");
@@ -123,5 +161,7 @@ public class Administra {
         Funciones.guardarComercial(com);
         Funciones.guardarCarga(car);
         Funciones.guardarPrivado(pri);
+        Funciones.guardarPasajero(pas);
+        Funciones.guardarPiloto(pil);
     }
 }

@@ -1,0 +1,4 @@
+Juan;1;true;false
+Pedro;2;false;true
+Felipe;3;false;false
+Ernesto;4;false;true

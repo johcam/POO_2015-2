@@ -1,11 +1,20 @@
 public class Pasajero extends Persona{
+    boolean vip;
+    boolean clienteFrecuente;
     
-    public Pasajero(String nombre, int id, String rol){
+    public Pasajero(String nombre,int id,boolean vip, boolean cliFrec){
         this.nombre=nombre;
         this.id=id;
-        this.rol=rol;
+        this.vip=vip;
+        this.clienteFrecuente=cliFrec;
     }
     public int getVolado(){
         return volado;
+    }
+    public boolean getVip(){
+        return vip;
+    }
+    public boolean getClienteFrecuente(){
+        return clienteFrecuente;
     }
 }
