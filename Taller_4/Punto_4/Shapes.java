@@ -1,4 +1,4 @@
-public class Shapes {
+public abstract class Shapes {
     double lenght;
     double area;
     double perimeter;
