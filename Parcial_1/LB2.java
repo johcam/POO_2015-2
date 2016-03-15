@@ -1,75 +1,62 @@
 import java.util.Scanner;
 
-public class Main
-{
+public class Main {
 
-    public static void main(String[] args)
-    {
-        Scanner sc = new Scanner(System.in);
-        int n= sc.nextInt();
-        for(int b=1; b<=n; b++)
-        {
+	public static void main(String[] args) {
 
-            int card, play;
-            card=sc.nextInt();
-            play=sc.nextInt();
-           
-            int[] p= new int[play];
-            int[] baraja = new int[card];
-  //***************************************************************        
-            for(int i=0; i<card; i++)
-            {
-                baraja[i]=sc.nextInt();
-            }
-//**************************************************************/
-            int cardt=0, cardplay=0;
-            for(int i=0; i<card; i++)
-            {
-                int cardh=card-1;
-                if(baraja[cardh]>=baraja[cardt])
-                {
-                    p[cardplay]=p[cardplay]+baraja[cardh];
-                    cardh--;
-                }
-                else
-                {
-                    p[cardplay]=p[cardplay]+baraja[cardt];
-                    cardt++;
-                }
-                cardplay++;
-                if(cardplay>=play)
-                {
-                    cardplay=0;
-                };
-                if(cardh<cardt)
-                {
-                    break;
-                }
-            }
-//*******************************************************************
-            int max=0;
-            for(int i=0; i<play; i++)
-            {
-                if(p[i]>max)
-                {
-                    max=p[i];
-                }
-            }
+		
+		Scanner sc = new Scanner(System.in);
+		int n= sc.nextInt();
+		for(int b=1; b<=n; b++){
+			 
+		int c, j;
+		c=sc.nextInt();
+		j= sc.nextInt();
+		int[] mazo = new int[c];
+		int[] puntos= new int[j];
+		for(int i=0; i<c; i++){
+			mazo[i]=sc.nextInt();
+		}
+		 int cj=0;
+		 int ct=0;
+		 int ch=c-1;
+		for(int i=0; i<c; i++){
+			
+			if(mazo[ch]>=mazo[ct]){
+				puntos[cj]=puntos[cj]+mazo[ch];
+				ch--;
+			}else{
+				puntos[cj]=puntos[cj]+mazo[ct];
+				ct++;
+			}
+			cj++;
+			if(cj>=j){
+				cj=0;
+			};
+			if(ch<ct){
+				break;
+			}
+		}
+		int max=0;
+		for(int i=0; i<j; i++){
+			if(puntos[i]>max){
+				max=puntos[i];
+			}
+		}
+		
+		System.out.println("Caso #"+b+":");
+		int m=1;
+		for(int k=0; k<j; k++){
+			if(puntos[k]==max){
+				System.out.print(m+" ");
+			}
+			m++;
+		}
+		System.out.println();
+		
+		
 
-            System.out.println("Caso #"+b+":");
-//*******************************************************************
-            int pack=1;
-            for(int k=0; k<play; k++)
-            {
-                if(p[k]==max)
-                {
-                    System.out.print(pack+" ");
-                }
-                pack++;
-            }
-            System.out.println();
-            
-        }
-    }
+	}
+	}
 
 }
